@@ -8,10 +8,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software and how to install them (developer prerequisites)
 
 ```
-Give examples
+1. Install all extensions currently in Visual Code
+2. Set up Docker
+3. Set up GIT
 ```
 
 ### Installing
