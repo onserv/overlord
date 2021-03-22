@@ -11,10 +11,12 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them (developer prerequisites)
 
 ```
-1. Install all extensions currently in Visual Code
-2. Set up Docker
-3. Set up GIT
-```
+1. Install the following Visual Code Extensions: Cloudfoundry Manifest YML Support, Concourse CI Pipeline Editor, Debugger for Java, Docker, ESLint, GitLens, Java Extension Pack, Java Test Runner, Language Support for Java(TM), Markdown Preview Enhanced, Maven for Java, PostgreSQL, Postman Runner, Prettier, Project Manager for Java, React Native Tools, Remote -WSL, SonarLint, Spring Boot Dashboard, Spring Boot Extension Pack, Spring Boot Tools, Spring Initializr Java Support, and Visual Studio IntelliCode.
+2. Set up Docker Hub.
+3. Set up GIT.
+4. Set up API.
+5. Set up database.
+
 
 ### Installing
 
