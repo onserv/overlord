@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import com.onserv.overlord.dto.UserDto;
-import com.onserv.overlord.service.UserService;
+import com.onserv.overlord.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-class UserController {
+public class UsersController {
 
     @Autowired
-    private UserService service;
+    private UsersService service;
 
     @GetMapping
     public List<UserDto> findAll() {

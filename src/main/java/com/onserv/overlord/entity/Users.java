@@ -9,12 +9,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,7 +27,6 @@ public class User {
     String phone_number;
     Boolean is_active;
 
-    Integer role_id;
-
+    Long role_id;
 
 }

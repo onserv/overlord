@@ -16,8 +16,6 @@ public class OverlordApplication {
 
 }
 
-
-
 //@ResponseStatus(HttpStatus.BAD_REQUEST)
 //public class BadRequestException extends RuntimeException {
    //

@@ -2,27 +2,29 @@ package com.onserv.overlord.service;
 
 import java.util.Optional;
 
-import com.onserv.overlord.entity.User;
-import com.onserv.overlord.repository.UserRepository;
+import com.onserv.overlord.entity.Users;
+import com.onserv.overlord.repository.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class UserService implements UserRepository{
+@Service 
+public class UsersService implements UsersRepository{
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepository userRepository;
 
     @Override
-    public <S extends User> S save(S entity) {
+    public <S extends Users> S save(S entity) {
         return userRepository.save(entity);
     }
 
     @Override
-    public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {
+    public <S extends Users> Iterable<S> saveAll(Iterable<S> entities) {
         return userRepository.saveAll(entities);
     }
 
     @Override
-    public Optional<User> findById(Long id) {
+    public Optional<Users> findById(Long id) {
         return userRepository.findById(id);
     }
 
@@ -32,12 +34,12 @@ public class UserService implements UserRepository{
     }
 
     @Override
-    public Iterable<User> findAll() {
+    public Iterable<Users> findAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public Iterable<User> findAllById(Iterable<Long> ids) {
+    public Iterable<Users> findAllById(Iterable<Long> ids) {
         return userRepository.findAllById(ids);
     }
 
@@ -52,7 +54,7 @@ public class UserService implements UserRepository{
     }
 
     @Override
-    public void delete(User entity) {
+    public void delete(Users entity) {
         userRepository.delete(entity);
     }
 
@@ -62,7 +64,7 @@ public class UserService implements UserRepository{
     }
 
     @Override
-    public void deleteAll(Iterable<? extends User> entities) {
+    public void deleteAll(Iterable<? extends Users> entities) {
         userRepository.deleteAll(entities);
     }
 
