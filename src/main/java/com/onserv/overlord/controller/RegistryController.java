@@ -3,10 +3,8 @@ package com.onserv.overlord.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
-import com.onserv.overlord.dto.UserDto;
-import com.onserv.overlord.service.UsersService;
-
+import com.onserv.overlord.dto.RegistryDto;
+import com.onserv.overlord.service.RegistryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,26 +15,23 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/registry")
 @AllArgsConstructor
-public class UsersController {
+public class RegistryController {
 
     @Autowired
-    private UsersService service;
+    private RegistryService service;
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<UserDto>> findAllUsers() {
-        List<UserDto> dto = StreamSupport.stream(service.findAll().spliterator(), false)
-        .map(user -> 
-            UserDto.builder()
-            .id(user.getId())
-            .first_name(user.getFirst_name() )
-            .last_name(user.getLast_name())
-            .username(user.getUsername())
-            .email(user.getEmail())
-            .phone_number(user.getPhone_number())
-            .is_active(user.getIs_active())
-            .role_id(user.getRole_id())
+    public ResponseEntity<List<RegistryDto>> findAllRegistry() {
+        List<RegistryDto> dto = StreamSupport.stream(service.findAll().spliterator(), false)
+        .map(registry -> 
+            RegistryDto.builder()
+            .id(registry.getId())
+            .client_id(registry.getClient_id())
+            .is_active(registry.getIs_active())
+            .scopes(registry.getScopes())
+            .secret(registry.getSecret())
             .build())
         .collect(Collectors.toList());
 
@@ -44,17 +39,14 @@ public class UsersController {
     }
 
     @GetMapping(value = "/{id}")
-    public UserDto findUsersById(@PathVariable("id") Long id) {
-           return service.findById(id).map(user ->
-            UserDto.builder()
-            .id(user.getId())
-            .first_name(user.getFirst_name() )
-            .last_name(user.getLast_name())
-            .username(user.getUsername())
-            .email(user.getEmail())
-            .phone_number(user.getPhone_number())
-            .is_active(user.getIs_active())
-            .role_id(user.getRole_id())
+    public RegistryDto findRegistryById(@PathVariable("id") Long id) {
+           return service.findById(id).map(registry ->
+           RegistryDto.builder()
+           .id(registry.getId())
+           .client_id(registry.getClient_id())
+           .is_active(registry.getIs_active())
+           .scopes(registry.getScopes())
+           .secret(registry.getSecret())
             .build()).orElse(null);
     }
 

@@ -3,10 +3,8 @@ package com.onserv.overlord.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
-
-import com.onserv.overlord.dto.UserDto;
-import com.onserv.overlord.service.UsersService;
-
+import com.onserv.overlord.dto.RolesDto;
+import com.onserv.overlord.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,26 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/roles")
 @AllArgsConstructor
-public class UsersController {
+public class RolesController {
 
     @Autowired
-    private UsersService service;
+    private RolesService service;
 
     @GetMapping(produces = "application/json")
-    public ResponseEntity<List<UserDto>> findAllUsers() {
-        List<UserDto> dto = StreamSupport.stream(service.findAll().spliterator(), false)
-        .map(user -> 
-            UserDto.builder()
-            .id(user.getId())
-            .first_name(user.getFirst_name() )
-            .last_name(user.getLast_name())
-            .username(user.getUsername())
-            .email(user.getEmail())
-            .phone_number(user.getPhone_number())
-            .is_active(user.getIs_active())
-            .role_id(user.getRole_id())
+    public ResponseEntity<List<RolesDto>> findAllRoles() {
+        List<RolesDto> dto = StreamSupport.stream(service.findAll().spliterator(), false)
+        .map(role -> 
+            RolesDto.builder()
+            .id(role.getId())
+            .role_name(role.getRole_name())
             .build())
         .collect(Collectors.toList());
 
@@ -44,17 +36,11 @@ public class UsersController {
     }
 
     @GetMapping(value = "/{id}")
-    public UserDto findUsersById(@PathVariable("id") Long id) {
-           return service.findById(id).map(user ->
-            UserDto.builder()
-            .id(user.getId())
-            .first_name(user.getFirst_name() )
-            .last_name(user.getLast_name())
-            .username(user.getUsername())
-            .email(user.getEmail())
-            .phone_number(user.getPhone_number())
-            .is_active(user.getIs_active())
-            .role_id(user.getRole_id())
+    public RolesDto findRolesById(@PathVariable("id") Long id) {
+           return service.findById(id).map(role ->
+            RolesDto.builder()
+            .id(role.getId())
+            .role_name(role.getRole_name())
             .build()).orElse(null);
     }
 

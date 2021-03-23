@@ -19,6 +19,6 @@ public class UserDto {
 
     private Boolean is_active;
 
-    private Integer role_id;
+    private Long role_id;
 
 }
