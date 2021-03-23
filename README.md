@@ -37,6 +37,7 @@ until finished
 End with an example of getting some data out of the system or using it for a little demo
 
 https://mapstruct.org/documentation/spring-extensions/reference/html/
+https://springframework.guru/using-mapstruct-with-project-lombok/
 
 ## Running the tests
 

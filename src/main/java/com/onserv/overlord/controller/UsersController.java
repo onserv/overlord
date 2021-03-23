@@ -43,9 +43,11 @@ public class UsersController {
         return dto != null ? ResponseEntity.ok(dto): null;
     }
 
+    
+
     @GetMapping(value = "/{id}")
     public UserDto findUsersById(@PathVariable("id") Long id) {
-           return service.findById(id).map(user ->
+           return service.findById(id).map(user -> 
             UserDto.builder()
             .id(user.getId())
             .first_name(user.getFirst_name() )
@@ -55,7 +57,8 @@ public class UsersController {
             .phone_number(user.getPhone_number())
             .is_active(user.getIs_active())
             .role_id(user.getRole_id())
-            .build()).orElse(null);
+            .build()
+            ).orElse(null);
     }
 
    /* 

@@ -4,12 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import com.onserv.overlord.dto.RolesDto;
+import com.onserv.overlord.entity.Roles;
 import com.onserv.overlord.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -44,14 +48,16 @@ public class RolesController {
             .build()).orElse(null);
     }
 
-   /* 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Long create(@RequestBody User resource) {
-        //Preconditions.checkNotNull(resource);
-        return service.create(resource);
+ //   @ResponseStatus(HttpStatus.CREATED)
+    public Roles create(@RequestBody RolesDto request) {
+            return service.save(Roles.builder()
+            .id(null)
+            .role_name(request.getRole_name())
+            .build());
     }
 
+/* 
     @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@PathVariable( "id" ) Long id, @RequestBody User resource) {
