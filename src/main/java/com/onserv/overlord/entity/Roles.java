@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Roles {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id; // will be set when persisting
 
     String role_name;

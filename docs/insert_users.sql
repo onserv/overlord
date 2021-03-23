@@ -1,0 +1,2 @@
+INSERT INTO public.users(email, first_name, is_active, last_name, password, phone_number, role_id, username) VALUES ('ben@ben.com', 'Ben', true, 'Martin', '123', '9164001229', 1, 'ben');
+INSERT INTO public.users(email, first_name, is_active, last_name, password, phone_number, role_id, username) VALUES ('test@ben.com', 'Test', true, 'User', '123', '9991234567', 3, 'test');

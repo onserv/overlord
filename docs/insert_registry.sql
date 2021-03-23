@@ -1,0 +1,1 @@
+INSERT INTO public.registry(client_id, is_active, scopes, secret) VALUES ('overlord', true, 'can_write,can_read', 'secret');

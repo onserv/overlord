@@ -8,21 +8,25 @@ import com.onserv.overlord.dto.UserDto;
 import com.onserv.overlord.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("/users")
+@AllArgsConstructor
 public class UsersController {
 
     @Autowired
     private UsersService service;
 
-    @GetMapping
-    public List<UserDto> findAll() {
-        return  StreamSupport.stream(service.findAll().spliterator(), false)
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<List<UserDto>> findAll() {
+        List<UserDto> dto = StreamSupport.stream(service.findAll().spliterator(), false)
         .map(user -> 
             UserDto.builder()
             .first_name(user.getFirst_name() )
@@ -31,6 +35,8 @@ public class UsersController {
             .is_active(user.getIs_active())
             .build())
         .collect(Collectors.toList());
+
+        return dto != null ? ResponseEntity.ok(dto): null;
     }
 
     @GetMapping(value = "/{id}")
@@ -44,7 +50,8 @@ public class UsersController {
             .build()).orElse(null);
     }
 
-   /* @PostMapping
+   /* 
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Long create(@RequestBody User resource) {
         //Preconditions.checkNotNull(resource);
@@ -63,6 +70,11 @@ public class UsersController {
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") Long id) {
         service.deleteById(id);
+    }
+
+    @PatchMapping("/patch")
+    public @ResponseBody ResponseEntity<String> patch() {
+        return new ResponseEntity<String>("PATCH Response", HttpStatus.OK);
     }
 */
 }

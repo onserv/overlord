@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class Users {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id; // will be set when persisting
 
     String first_name;
