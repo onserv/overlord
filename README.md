@@ -36,6 +36,8 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
+https://mapstruct.org/documentation/spring-extensions/reference/html/
+
 ## Running the tests
 
 Explain how to run the automated tests for this system
