@@ -52,7 +52,6 @@ public class RolesController {
  //   @ResponseStatus(HttpStatus.CREATED)
     public Roles create(@RequestBody RolesDto request) {
             return service.save(Roles.builder()
-            .id(null)
             .role_name(request.getRole_name())
             .build());
     }
