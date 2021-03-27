@@ -1,0 +1,1 @@
+docker run -e db_pwd=the user password goes here -e api_port=unused port goes here -dp 12000:12500 --network=host overlordapi
