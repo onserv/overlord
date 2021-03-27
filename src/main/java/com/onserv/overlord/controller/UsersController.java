@@ -10,12 +10,16 @@ import com.onserv.overlord.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import lombok.AllArgsConstructor;
 
@@ -43,15 +47,13 @@ public class UsersController {
             .build())
         .collect(Collectors.toList());
 
-        return dto != null ? ResponseEntity.ok(dto): null;
+        return dto != null ? ResponseEntity.ok(dto): ResponseEntity.notFound().build();
     }
 
-    
-
     @GetMapping(value = "/{id}")
-    public UserDto findUsersById(@PathVariable("id") Long id) {
+    public ResponseEntity<UserDto> findUsersById(@PathVariable("id") Long id) {
            return service.findById(id).map(user -> 
-            UserDto.builder()
+           ResponseEntity.ok(UserDto.builder()
             .id(user.getId())
             .first_name(user.getFirst_name() )
             .last_name(user.getLast_name())
@@ -60,12 +62,11 @@ public class UsersController {
             .phone_number(user.getPhone_number())
             .is_active(user.getIs_active())
             .role_id(user.getRole_id())
-            .build()
-            ).orElse(null);
+            .build())).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
- //   @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)
     public Users create(@RequestBody UserDto request) {
             return service.save(Users.builder()
             .first_name(request.getFirst_name())
@@ -77,14 +78,6 @@ public class UsersController {
             .role_id(request.getRole_id())
             .build());
     }
-   /* 
-    @PutMapping(value = "/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable( "id" ) Long id, @RequestBody User resource) {
-        //Preconditions.checkNotNull(resource);
-        RestPreconditions.checkNotNull(service.getById(resource.getId()));
-        service.update(resource);
-    }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -92,9 +85,18 @@ public class UsersController {
         service.deleteById(id);
     }
 
-    @PatchMapping("/patch")
-    public @ResponseBody ResponseEntity<String> patch() {
-        return new ResponseEntity<String>("PATCH Response", HttpStatus.OK);
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@RequestBody UserDto request) {
+        service.save(Users.builder().id(request.getId())
+        .first_name(request.getFirst_name())
+        .last_name(request.getLast_name())
+        .username(request.getUsername())
+        .email(request.getEmail())
+        .phone_number(request.getPhone_number())
+        .is_active(request.getIs_active())
+        .role_id(request.getRole_id())
+        .build());
     }
-*/
 }
