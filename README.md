@@ -1,6 +1,6 @@
 # IB Computer Science Internal Assessment
 
-A Java RestAPI with SpringBoot including a full CRUD base of operations and implemented PostgreSQL database. Featuring a API controller, communicating with User, Roles, and Registry services, alongside a complete repository for full HTTP Get, Post, Put, and Delete mappings between applications.
+A Java RestAPI with SpringBoot including a full CRUD base of operations and implemented PostgreSQL database. Featuring a API controller, communicating with User, Roles, and Registry services, alongside a complete repository for full HTTP Get, Post, Put, and Delete mappings between applications. Also piloted a basic User Interface with React using open-source components.
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -18,7 +18,7 @@ In order to test locally there are a few pre-requisite dependencies
 - Install IDE plugins like Java, SpringBoot, Lombok, and Maven support extensions
 - Set two environment variables (db_pwd and api_port)
 
-Review SpringBoot src/main/resources/application.properties for the api port, database ip and port, username and password.
+Review SpringBoot src/main/resources/application.properties and set the api port, database ip and port, username and password.
 
 ```
 1. Install the following Visual Code Extensions: Cloudfoundry Manifest YML Support, Concourse CI Pipeline Editor, Debugger for Java, Docker, ESLint, GitLens, Java Extension Pack, Java Test Runner, Language Support for Java(TM), Markdown Preview Enhanced, Maven for Java, PostgreSQL, Postman Runner, Prettier, Project Manager for Java, React Native Tools, Remote -WSL, SonarLint, Spring Boot Dashboard, Spring Boot Extension Pack, Spring Boot Tools, Spring Initializr Java Support, and Visual Studio IntelliCode.
@@ -79,7 +79,7 @@ docker run -e db_pwd=the user password goes here -e api_port=unused port goes he
 
 Install Postman, start the API, then create requests per example
 
-![Example of how to test using Postman](postman.png)
+![Example of how to test using Postman](docs/postman.png)
 
 ### Reference Documentation
 For further reference, please consider the following sections:
